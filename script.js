@@ -30,6 +30,15 @@ function createFood() {
   context.fillRect(food.x, food.y, box, box)
 }
 
+function eatFood() {
+  if (snake[0].x != food.x || snake[0].y != food.y) {
+    snake.pop()
+  } else {
+    food.x = Math.floor(Math.random() * 15 + 1) * box
+    food.y = Math.floor(Math.random() * 15 + 1) * box
+  }
+}
+
 function createMovement() {
   let snakeX = snake[0].x
   let snakeY = snake[0].y
@@ -39,7 +48,7 @@ function createMovement() {
   if (direction == "up") snakeY -= box
   if (direction == "down") snakeY += box
 
-  snake.pop()
+  eatFood()
 
   let newHead = {
     x: snakeX,
@@ -61,9 +70,9 @@ function directionUpdate(event) {
   if (event.keyCode == 38 && direction != "down") direction = "up"
   if (event.keyCode == 39 && direction != "left") direction = "right"
   if (event.keyCode == 40 && direction != "up") direction = "down"
-  }
+}
   
-  addEventListener('keydown', directionUpdate)
+addEventListener('keydown', directionUpdate)
 
 function startGame() {
   createBG()
