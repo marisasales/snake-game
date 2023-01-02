@@ -75,6 +75,14 @@ function snakeCollision() {
   }
 }
 
+function score() {
+  let score = snake.length - 1
+
+  context.fillStyle = "white"
+  context.font = "32px Arial"
+  context.fillText(score, 0.5 * box, 1.2 * box)
+}
+
 function directionUpdate(event) {
   if (event.keyCode == 37 && direction != "right") direction = "left"
   if (event.keyCode == 38 && direction != "down") direction = "up"
@@ -91,6 +99,7 @@ function startGame() {
   createMovement()
   snakeLoop()
   snakeCollision()
+  score()
 }
 
 let game = setInterval(startGame, 100)
