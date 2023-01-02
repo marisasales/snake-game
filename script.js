@@ -3,6 +3,10 @@ let context = canvas.getContext('2d')
 let box = 32
 let snake = []
 let direction = "right"
+let food = {
+  x: Math.floor(Math.random() * 15 + 1) * box,
+  y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 snake[0] = { 
   x: 8 * box,
@@ -19,6 +23,11 @@ function createSnake() {
     context.fillStyle = "green"
     context.fillRect(snake[i].x, snake[i].y, box, box)
   }
+}
+
+function createFood() {
+  context.fillStyle = "red"
+  context.fillRect(food.x, food.y, box, box)
 }
 
 function createMovement() {
@@ -59,6 +68,7 @@ function directionUpdate(event) {
 function startGame() {
   createBG()
   createSnake()
+  createFood()
   createMovement()
   snakeLoop()
 }
