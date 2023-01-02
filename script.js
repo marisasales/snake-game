@@ -65,6 +65,16 @@ function snakeLoop() {
   if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box
 }
 
+function snakeCollision() {
+  for (i = 1; i < snake.length; i++) {
+    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+      clearInterval(game)
+      alert('Game Over :(')
+      location.reload()
+    }
+  }
+}
+
 function directionUpdate(event) {
   if (event.keyCode == 37 && direction != "right") direction = "left"
   if (event.keyCode == 38 && direction != "down") direction = "up"
@@ -80,6 +90,7 @@ function startGame() {
   createFood()
   createMovement()
   snakeLoop()
+  snakeCollision()
 }
 
 let game = setInterval(startGame, 100)
